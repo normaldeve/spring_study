@@ -32,6 +32,10 @@ class CouponSynchronizedConcurrencyTest {
 
     @BeforeEach
     void setUp() {
+        // 기존 데이터 정리
+        issueRepository.deleteAll();
+        couponRepository.deleteAll();
+
         couponRepository.save(new Coupon(1L, 100));
     }
 
@@ -53,11 +57,13 @@ class CouponSynchronizedConcurrencyTest {
         }
 
         latch.await();
+        executor.shutdown();
 
         Coupon coupon = couponRepository.findById(1L).get();
         long issuedCount = issueRepository.count();
 
         System.out.println("남은 쿠폰 수 = " + coupon.getStock());
         System.out.println("발급된 쿠폰 수 = " + issuedCount);
+
     }
 }
