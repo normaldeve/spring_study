@@ -22,7 +22,9 @@ jobs:
           cache: 'gradle'
 
       - name: Grant execute permission for Gradle
-        run: chmod +x ./gradlew
+        run: chmod +x elasticsearch-test-container/gradlew
 
       - name: Run tests
-        run: ./gradlew clean test
+        run: |
+          cd elasticsearch-test-container
+          ./gradlew clean test
