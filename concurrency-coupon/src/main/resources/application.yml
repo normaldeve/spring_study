@@ -3,10 +3,11 @@ spring:
     name: concurrency-coupon
 
   datasource:
-    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
+    url: jdbc:mysql://localhost:3306/test_db?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: test_user
+    password: test_pass
+
   jpa:
     hibernate:
       ddl-auto: create
@@ -14,6 +15,4 @@ spring:
     properties:
       hibernate:
         format_sql: true
-  h2:
-    console:
-      enabled: true
+        dialect: org.hibernate.dialect.MySQLDialect
