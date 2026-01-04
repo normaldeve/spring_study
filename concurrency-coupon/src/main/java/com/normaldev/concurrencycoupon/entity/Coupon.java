@@ -1,10 +1,10 @@
 package com.normaldev.concurrencycoupon.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * Coupon Entity
@@ -14,6 +14,9 @@ import lombok.Getter;
  */
 @Getter
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "coupon")
 public class Coupon {
 
@@ -23,17 +26,8 @@ public class Coupon {
     @Column(nullable = false)
     private int stock;
 
-    protected Coupon() {
-    }
-
-    public Coupon(Long id, int stock) {
-        this.id = id;
-        this.stock = stock;
-    }
-
-    public int getStock() {
-        return stock;
-    }
+    @Version
+    private Long version;
 
     public void decrease() {
         this.stock -= 1;

@@ -28,7 +28,11 @@ public class DataInitializer {
             couponRepository.deleteAll();
             userRepository.deleteAll();
 
-            Coupon coupon = new Coupon(1L, 100);
+            Coupon coupon = Coupon.builder()
+                    .id(1L)
+                    .stock(100)
+                    .build();
+
             couponRepository.save(coupon);
             System.out.println("쿠폰 생성 완료 - ID: " + coupon.getId() + ", 재고: " + coupon.getStock());
 
