@@ -1,11 +1,11 @@
-package com.normaldev.concurrencycoupon.service;
+package com.normaldev.concurrencycoupon.service.db_lock;
 
 import com.normaldev.concurrencycoupon.entity.Coupon;
 import com.normaldev.concurrencycoupon.entity.CouponIssue;
 import com.normaldev.concurrencycoupon.repository.CouponIssueRepository;
 import com.normaldev.concurrencycoupon.repository.CouponRepository;
+import com.normaldev.concurrencycoupon.service.CouponService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @RequiredArgsConstructor
-public class PessimisticCouponService implements CouponService{
+public class PessimisticCouponService implements CouponService {
 
     private final CouponRepository couponRepository;
     private final CouponIssueRepository issueRepository;
